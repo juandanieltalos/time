@@ -14,17 +14,15 @@ public class MainImpl implements Main
 	@Override
 	public Instant getInstant(String dateTime)
 	{
-		ZonedDateTime result = ZonedDateTime.parse(dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		//ZonedDateTime result = ZonedDateTime.parse(dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
-		LocalDate local = LocalDate.parse(dateTime);
-		//		Instant start = DateTimeFormatter.ISO_LOCAL_DATE_TIME.form
-		//		start.plusSeconds(10);
-		//		start.minusSeconds(60*10);
 
-		Instant instant = Instant.parse(dateTime);
+		LocalDateTime local = LocalDateTime.parse(dateTime);
+		LocalDateTime plus1s = local.plusSeconds(1);
+		LocalDateTime minus10m = plus1s.minusMinutes(10);
 
-		instant.plusSeconds(1);
-		instant.minusSeconds(60 * 10);
+		Instant instant = minus10m.toInstant(ZoneOffset.ofHours(-5));
+
 		return instant;
 	}
 
